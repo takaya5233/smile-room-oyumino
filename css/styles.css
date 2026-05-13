@@ -415,7 +415,7 @@ img { max-width: 100%; display: block; }
   display: inline-flex;
   align-items: center;
 }
-.footer-logo-wrap .brand-logo { height: 44px; }
+.footer-logo-wrap .brand-logo { height: 64px; }
 .footer-bottom {
   margin-top: 50px;
   padding-top: 24px;
