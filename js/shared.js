@@ -56,11 +56,9 @@
           <div class="footer-grid">
             <div>
               <div class="footer-brand">
-                <div class="brand-mark" aria-hidden="true">す</div>
-                <div>
-                  <div class="brand-name" style="color:white;">スマイルームおゆみ野</div>
-                  <div class="brand-sub">高齢者対応賃貸住宅</div>
-                </div>
+                <a href="index.html" class="footer-logo-wrap" aria-label="スマイルームおゆみ野 トップへ">
+                  <img src="images/logo.png" alt="スマイルームおゆみ野" class="brand-logo">
+                </a>
               </div>
               <p style="color:oklch(0.8 0.01 30);margin:0 0 6px;">自分らしく暮らせる、<br>あたらしい住まいのかたち。</p>
               <p style="font-size:12.5px;color:oklch(0.7 0.01 30);margin:0;">〒266-0005<br>千葉県千葉市緑区誉田町1-659-1</p>
