@@ -29,11 +29,7 @@
       <header class="site-header">
         <div class="container">
           <a href="index.html" class="brand" aria-label="スマイルームおゆみ野 トップへ">
-            <div class="brand-mark" aria-hidden="true">す</div>
-            <div>
-              <div class="brand-name">スマイルームおゆみ野</div>
-              <div class="brand-sub">高齢者対応賃貸住宅</div>
-            </div>
+            <img src="images/logo.png" alt="スマイルームおゆみ野" class="brand-logo">
           </a>
           <nav class="site-nav" aria-label="メインナビゲーション">${navHtml}</nav>
           <a href="tel:05020302851" class="header-tel" aria-label="電話で問い合わせ">

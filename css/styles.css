@@ -212,6 +212,12 @@ img { max-width: 100%; display: block; }
   color: var(--ink-mute);
   letter-spacing: 0.08em;
 }
+.brand-logo {
+  height: 48px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
 
 .site-nav {
   display: flex;
