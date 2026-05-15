@@ -83,6 +83,7 @@
   border-radius: 200px 30px 200px 30px;
   overflow: hidden;
   box-shadow: var(--shadow-lg);
+  background: oklch(0.96 0.03 50);
 }
 .hero-visual .img-placeholder {
   width: 100%; height: 100%; border-radius: 0;
@@ -107,6 +108,18 @@
 }
 .hero-badge.b1 { top: 24px; left: -16px; }
 .hero-badge.b2 { bottom: 30px; right: -20px; }
+.pension-tag {
+  display: block;
+  background: var(--pink-100);
+  color: var(--pink-600);
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: "Zen Maru Gothic", sans-serif;
+  padding: 4px 12px;
+  margin-top: 6px;
+  border: 1px solid var(--pink-200);
+}
 .hero-badge .icon {
   width: 40px; height: 40px;
   border-radius: 12px;
@@ -670,6 +683,7 @@
           <div class="hero-meta-item">
             <small>月額家賃</small>
             <strong style="color:var(--pink-600);font-size:24px;">59,800円<span style="font-size:14px;color:var(--ink-soft);">〜</span></strong>
+            <span class="pension-tag">年金で暮らせる価格帯です</span>
           </div>
           <div class="hero-meta-item">
             <small>居室タイプ</small>
@@ -683,7 +697,7 @@
       </div>
       <div class="reveal" style="position:relative;">
         <div class="hero-visual">
-          <img src="images/exterior.jpg" alt="スマイルームおゆみ野 施設外観" style="width:100%;height:100%;object-fit:cover;">
+          <img src="images/exterior.jpg" alt="スマイルームおゆみ野 施設外観" style="width:100%;height:100%;object-fit:contain;object-position:center center;">
         </div>
         <div class="hero-badge b1">
           <div class="icon">
