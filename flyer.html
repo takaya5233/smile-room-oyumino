@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>スマイルームおゆみ野 新聞折込チラシ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pink:        #E8849A;
+      --pink-dark:   #C85A78;
+      --pink-mid:    #D97090;
+      --pink-light:  #F0C0CE;
+      --pink-pale:   #FDF0F4;
+      --cream:       #FFFAF6;
+      --cream-mid:   #FBF0E6;
+      --brown-dark:  #2E1A0E;
+      --brown-mid:   #6B4232;
+      --brown-soft:  #9C6B58;
+      --green:       #5A9E7A;
+      --green-pale:  #EEF7F2;
+      --white:       #FFFFFF;
+    }
+
+    html, body {
+      width: 257mm;
+      margin: 0 auto;
+      background: #BFB7B0;
+      font-family: 'Zen Maru Gothic', 'Noto Sans JP', sans-serif;
+    }
+
+    .sheet {
+      width: 257mm;
+      background: var(--cream);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* ══════════════════════════════════════
+       ヘッダー
+    ══════════════════════════════════════ */
+    .header {
+      background: linear-gradient(110deg, #B84868 0%, #D97090 45%, #EEA0B8 100%);
+      padding: 2mm 8mm;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 5mm;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute; top: -6mm; right: 20mm;
+      width: 28mm; height: 28mm; border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+    }
+    .header-logo {
+      height: 11mm; width: auto;
+      object-fit: contain; object-position: left center;
+      filter: brightness(0) invert(1);
+      flex-shrink: 0;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 3mm;
+    }
+    .header-badge {
+      background: rgba(255,255,255,0.20);
+      border: 1px solid rgba(255,255,255,0.45);
+      border-radius: 20px;
+      padding: 1mm 3.5mm;
+      color: var(--white);
+      font-size: 3mm;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    /* ══════════════════════════════════════
+       ヒーロー写真（上下カット・建物フォーカス）
+    ══════════════════════════════════════ */
+    .hero-photo {
+      position: relative;
+      width: 100%;
+      height: 121mm;         /* ページ上1/3（364mm÷3） */
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .hero-photo img {
+      position: absolute;
+      width: 100%;
+      height: calc(100% + 28mm); /* コンテナ高さ＋上カット分 → 下に隙間なし */
+      top: -28mm;                /* 空をこの分だけ上にカット */
+      left: 0;
+      display: block;
+      object-fit: cover;
+      object-position: center center;
+    }
+    /* 左上：エリアバッジ */
+    .hero-badge {
+      position: absolute;
+      top: 4mm; left: 5mm;
+      background: var(--pink-dark);
+      color: var(--white);
+      font-size: 3mm;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 1.2mm 4mm;
+      border-radius: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+      z-index: 10;
+    }
+    /* 下部オーバーレイ：画像の下端に固定・テキストを下寄せ */
+    .hero-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 34mm;                  /* 下から34mmだけ覆う */
+      padding: 0 10mm 4mm;
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(20,8,4,0.62) 35%,
+        rgba(20,8,4,0.88) 100%
+      );
+      display: flex;
+      align-items: flex-end;         /* テキストを下端に寄せる */
+      justify-content: space-between;
+      gap: 6mm;
+    }
+    .hero-headline {
+      font-size: 9.8mm;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.2;
+      letter-spacing: 0.03em;
+      text-shadow: 0 2px 14px rgba(0,0,0,0.45);
+      flex-shrink: 0;
+    }
+    .hero-headline em {
+      font-style: normal;
+      color: #FFD0DC;
+    }
+    .hero-sub-block {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5mm;
+      max-width: 95mm;
+      padding-bottom: 1mm;
+    }
+    .hero-sub-title {
+      font-size: 4.5mm;
+      font-weight: 900;
+      color: #FFD0DC;
+      line-height: 1.35;
+      letter-spacing: 0.02em;
+    }
+    .hero-sub-body {
+      font-size: 3mm;
+      color: rgba(255,255,255,0.88);
+      font-weight: 500;
+      line-height: 1.7;
+    }
+
+    /* ══════════════════════════════════════
+       年金リボン
+    ══════════════════════════════════════ */
+    .pension-ribbon {
+      background: linear-gradient(110deg, #C85A78 0%, #E8849A 60%, #F0A8B8 100%);
+      padding: 2.5mm 10mm;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5mm;
+    }
+    .pension-ribbon-main {
+      font-size: 7mm;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: 0.08em;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.20);
+      white-space: nowrap;
+    }
+    .pension-ribbon-sub {
+      font-size: 3.8mm;
+      font-weight: 700;
+      color: rgba(255,255,255,0.90);
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.40);
+      border-radius: 20px;
+      padding: 1mm 4mm;
+      white-space: nowrap;
+    }
+
+    /* ══════════════════════════════════════
+       6つの安心
+    ══════════════════════════════════════ */
+    .features {
+      padding: 3mm 8mm 2.5mm;
+      background: var(--white);
+    }
+    .section-title {
+      text-align: center;
+      font-size: 4.3mm;
+      font-weight: 900;
+      color: var(--brown-dark);
+      letter-spacing: 0.10em;
+      margin-bottom: 2mm;
+    }
+    .section-title::before,
+    .section-title::after {
+      content: '✿';
+      color: var(--pink);
+      margin: 0 2mm;
+      font-size: 3.5mm;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8mm;
+    }
+    .feature-card {
+      background: var(--pink-pale);
+      border: 1px solid var(--pink-light);
+      border-radius: 8px;
+      padding: 2mm 2.5mm 1.8mm;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.8mm;
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--pink-light), var(--pink-dark));
+    }
+    .feature-icon  { font-size: 5.5mm; line-height: 1.2; }
+    .feature-label { font-size: 3.6mm; font-weight: 900; color: var(--brown-dark); line-height: 1.3; }
+    .feature-desc  { font-size: 2.7mm; color: var(--brown-soft); font-weight: 500; line-height: 1.55; }
+
+    /* ══════════════════════════════════════
+       2カラム（料金 ＋ アクセス）
+    ══════════════════════════════════════ */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;   /* 均等2列 */
+      padding: 2.5mm 8mm;
+      gap: 4mm;
+      align-items: stretch;             /* 両列を同じ高さに */
+    }
+
+    /* 共通：列タイトル */
+    .col-title {
+      font-size: 4mm;
+      font-weight: 900;
+      color: var(--brown-dark);
+      letter-spacing: 0.08em;
+      padding-bottom: 1.5mm;
+      margin-bottom: 0;
+    }
+
+    /* ── 料金列 ── */
+    .price-col {
+      display: flex;
+      flex-direction: column;
+      gap: 2mm;
+    }
+    .price-col .col-title {
+      border-bottom: 2px solid var(--pink);
+    }
+    .price-col .col-title::before { content: '💴 '; }
+
+    .plan-card {
+      background: var(--white);
+      border: 1.2px solid var(--pink-light);
+      border-radius: 8px;
+      padding: 1.8mm 3.5mm;
+      display: flex;
+      align-items: center;
+      gap: 2mm;
+    }
+    .plan-card.featured {
+      border-color: var(--pink);
+      background: var(--pink-pale);
+    }
+    .plan-type  { font-size: 2.9mm; font-weight: 700; color: var(--pink-dark); white-space: nowrap; flex-shrink: 0; }
+    .plan-name  { font-size: 2.8mm; color: var(--brown-soft); font-weight: 500; flex-shrink: 0; }
+    .plan-price { font-size: 5.8mm; font-weight: 900; color: var(--pink-dark); line-height: 1; margin-left: auto; white-space: nowrap; }
+    .plan-price small { font-size: 2.8mm; font-weight: 700; color: var(--brown-soft); }
+
+    .meal-list { display: flex; flex-direction: column; gap: 1.2mm; }
+    .meal-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.5mm 3mm; border-radius: 6px; background: var(--cream-mid);
+    }
+    .meal-item-name  { font-size: 3mm; font-weight: 700; color: var(--brown-dark); }
+    .meal-item-price { font-size: 3mm; font-weight: 700; color: var(--brown-mid); }
+
+    .price-note {
+      font-size: 2.8mm; color: var(--brown-soft); font-weight: 500;
+      background: var(--cream-mid); border-radius: 6px;
+      padding: 2mm 3mm; line-height: 1.65; flex: 1;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .price-note strong { color: var(--pink-dark); }
+
+    /* ── アクセス列 ── */
+    .access-col {
+      display: flex;
+      flex-direction: column;
+      gap: 2mm;
+    }
+    .access-col .col-title {
+      border-bottom: 2px solid var(--green);
+    }
+    .access-col .col-title::before { content: '📍 '; }
+
+    .access-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2mm;
+      flex: 1;                          /* 残りの高さを埋める */
+      justify-content: space-between;   /* 左列と高さを揃えるため均等配置 */
+    }
+    .access-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2mm 3mm;
+      border-radius: 6px;
+      background: var(--green-pale);
+      flex: 1;
+    }
+    .access-item.medical { background: var(--pink-pale); }
+    .access-item-name { font-size: 3.1mm; font-weight: 700; color: var(--brown-dark); }
+    .access-item-dist { font-size: 3.1mm; font-weight: 900; color: var(--green); white-space: nowrap; }
+    .access-item.medical .access-item-dist { color: var(--pink-dark); }
+
+    /* ══════════════════════════════════════
+       住所バー
+    ══════════════════════════════════════ */
+    .addr-bar {
+      margin: 0 8mm 2.5mm;
+      background: var(--brown-dark);
+      border-radius: 8px;
+      padding: 2.2mm 5mm;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8mm;
+      flex-wrap: wrap;
+    }
+    .addr-bar-item {
+      display: flex; align-items: center; gap: 2mm;
+      color: var(--white); font-size: 3.2mm; font-weight: 700; letter-spacing: 0.04em;
+    }
+    .addr-bar-item span { opacity: 0.6; font-size: 2.8mm; font-weight: 400; }
+
+    /* ══════════════════════════════════════
+       CTA
+    ══════════════════════════════════════ */
+    .cta {
+      background: linear-gradient(135deg, #B84868 0%, #D97090 50%, #EEA0B8 100%);
+      padding: 3.5mm 12mm 3mm;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta::before {
+      content: '';
+      position: absolute; top: -14mm; right: -14mm;
+      width: 55mm; height: 55mm; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.13) 0%, transparent 70%);
+    }
+    .cta::after {
+      content: '';
+      position: absolute; bottom: -10mm; left: -10mm;
+      width: 40mm; height: 40mm; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+    }
+    .cta-lead {
+      text-align: center; font-size: 4.2mm; color: rgba(255,255,255,0.96);
+      font-weight: 700; letter-spacing: 0.10em; margin-bottom: 2mm;
+    }
+    .cta-phone-wrap {
+      display: flex; align-items: center; justify-content: center; gap: 2.5mm;
+      background: rgba(255,255,255,0.18);
+      border-radius: 14px; padding: 2mm 8mm; margin-bottom: 2mm;
+      border: 1.2px solid rgba(255,255,255,0.38);
+      position: relative; z-index: 1;
+    }
+    .cta-phone-icon { font-size: 8mm; }
+    .cta-phone {
+      font-size: 11mm; font-weight: 900; color: var(--white);
+      letter-spacing: 0.06em; text-shadow: 0 2px 12px rgba(0,0,0,0.22); line-height: 1;
+    }
+    .cta-hours {
+      text-align: center; font-size: 3.2mm; color: rgba(255,255,255,0.90);
+      font-weight: 500; letter-spacing: 0.07em; position: relative; z-index: 1;
+    }
+
+    /* ══════════════════════════════════════
+       フッター
+    ══════════════════════════════════════ */
+    .footer {
+      background: var(--brown-dark);
+      padding: 2mm 10mm;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-company { font-size: 2.8mm; color: rgba(255,255,255,0.65); font-weight: 500; letter-spacing: 0.05em; }
+    .footer-sns { display: flex; align-items: center; gap: 3mm; }
+    .footer-sns-label { font-size: 2.6mm; color: rgba(255,255,255,0.48); }
+    .footer-sns-item {
+      display: flex; align-items: center; gap: 1.5mm;
+      background: rgba(255,255,255,0.10); border-radius: 6px;
+      padding: 1mm 2.5mm; font-size: 2.7mm; color: rgba(255,255,255,0.82); font-weight: 600;
+    }
+
+    /* ══════════════════════════════════════
+       印刷設定
+    ══════════════════════════════════════ */
+    @media print {
+      html, body { width: 257mm; background: none; }
+      .sheet { box-shadow: none; }
+      @page { size: 257mm 364mm; margin: 0; }
+    }
+    @media screen {
+      body { padding: 10mm 0; min-height: 100vh; }
+      .sheet { box-shadow: 0 10px 50px rgba(0,0,0,0.32); min-height: 364mm; }
+    }
+  </style>
+</head>
+<body>
+<div class="sheet">
+
+  <!-- ヘッダー -->
+  <header class="header">
+    <img class="header-logo" src="logo.png" alt="スマイルームおゆみ野">
+    <div class="header-right">
+      <div class="header-badge">高齢者向け住宅</div>
+    </div>
+  </header>
+
+  <!-- ヒーロー写真（上下カット・建物中心） + オーバーレイテキスト -->
+  <div class="hero-photo">
+    <img src="スマイルームおゆみ野外観.jpg" alt="スマイルームおゆみ野 外観">
+    <div class="hero-badge">🌸 千葉市緑区おゆみ野エリア</div>
+    <div class="hero-overlay">
+      <!-- 左：メインキャッチ -->
+      <h1 class="hero-headline">
+        ずっと自分らしく、<br>
+        <em>笑顔</em>で暮らせる家。
+      </h1>
+      <!-- 右：サブキャッチ＋説明 -->
+      <div class="hero-sub-block">
+        <div class="hero-sub-title">高齢者の毎日に、本当に必要なものを。</div>
+        <p class="hero-sub-body">高齢者向けの設備と見守りを備えた賃貸住宅。介護施設ではなく「自分らしく暮らせる住まい」として、ご本人にもご家族にも安心していただける環境を整えました。「安心」と「自由」を両立するため、設備・サポート・立地のすべてにこだわりました。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 年金リボン -->
+  <div class="pension-ribbon">
+    <div class="pension-ribbon-main">🌸 年金で暮らせる</div>
+    <div class="pension-ribbon-sub">月額 59,800円〜 家賃・管理費・共益費すべて込み</div>
+  </div>
+
+  <!-- 6つの安心 -->
+  <section class="features">
+    <p class="section-title">スマイルームおゆみ野の６つの安心</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🤝</div>
+        <div class="feature-label">介護を自由に選べる</div>
+        <div class="feature-desc">外部の訪問・通所介護を必要な分だけ利用可。介護度の変化にも対応。</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏠</div>
+        <div class="feature-label">バリアフリー設計</div>
+        <div class="feature-desc">段差ゼロ・手すり完備で毎日安全・快適に。</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔔</div>
+        <div class="feature-label">24時間スタッフ対応</div>
+        <div class="feature-desc">夜間も常駐スタッフが見守り。急なときも安心。</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏥</div>
+        <div class="feature-label">医療・介護連携</div>
+        <div class="feature-desc">近隣病院と連携。体調の変化にも素早く対応。</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌸👨‍👩‍👧</div>
+        <div class="feature-label">自由な暮らし・家族も安心</div>
+        <div class="feature-desc">完全プライベート個室で自分らしく。面会・訪問はいつでも大歓迎。</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🍱</div>
+        <div class="feature-label">食事サービス</div>
+        <div class="feature-desc">栄養士監修の食事を食堂でご提供（オプション）。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2カラム：料金 ＋ 周辺アクセス（ラベルなし・高さ揃え） -->
+  <div class="two-col">
+
+    <!-- 左：料金 -->
+    <div class="price-col">
+      <div class="col-title">参考価格（月額）</div>
+
+      <div class="plan-card">
+        <div>
+          <div class="plan-type">Aタイプ</div>
+          <div class="plan-name">個室 約9畳</div>
+        </div>
+        <div class="plan-price">59,800<small>円〜</small></div>
+      </div>
+
+      <div class="plan-card featured">
+        <div>
+          <div class="plan-type">Bタイプ ★人気</div>
+          <div class="plan-name">広め個室 約12畳</div>
+        </div>
+        <div class="plan-price">68,000<small>円〜</small></div>
+      </div>
+
+      <div class="meal-list">
+        <div class="meal-item">
+          <span class="meal-item-name">3食つき</span>
+          <span class="meal-item-price">+45,000円/月</span>
+        </div>
+        <div class="meal-item">
+          <span class="meal-item-name">昼・夕のみ</span>
+          <span class="meal-item-price">+32,000円/月</span>
+        </div>
+      </div>
+
+      <div class="price-note">
+        <strong>家賃＋管理費（光熱費込）＋共益費</strong>の定額制。礼金・更新料なし。<br>※敷金：家賃の2ヶ月分
+      </div>
+    </div>
+
+    <!-- 右：アクセス（ラベルなし・左と高さを合わせる） -->
+    <div class="access-col">
+      <div class="col-title">周辺環境・アクセス</div>
+
+      <div class="access-list">
+        <div class="access-item">
+          <span class="access-item-name">レストラン</span>
+          <span class="access-item-dist">徒歩 1分</span>
+        </div>
+        <div class="access-item">
+          <span class="access-item-name">コンビニエンスストア</span>
+          <span class="access-item-dist">徒歩 3分</span>
+        </div>
+        <div class="access-item">
+          <span class="access-item-name">イオン鎌取</span>
+          <span class="access-item-dist">車 4分</span>
+        </div>
+        <div class="access-item medical">
+          <span class="access-item-name">千葉南病院</span>
+          <span class="access-item-dist">車 5分</span>
+        </div>
+        <div class="access-item medical">
+          <span class="access-item-name">おゆみ野中央病院</span>
+          <span class="access-item-dist">車 6分</span>
+        </div>
+        <div class="access-item medical">
+          <span class="access-item-name">千葉県がんセンター</span>
+          <span class="access-item-dist">車 8分</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 住所バー -->
+  <div class="addr-bar">
+    <div class="addr-bar-item">📍 〒266-0005 千葉市緑区誉田町1-659-1</div>
+    <div class="addr-bar-item">🚃 <span>最寄り駅</span> JR外房線「誉田」駅 車 約5分　／　「鎌取」駅 車 約8分</div>
+  </div>
+
+  <!-- CTA -->
+  <section class="cta">
+    <p class="cta-lead">お電話・見学のご予約はこちら</p>
+    <div class="cta-phone-wrap">
+      <div class="cta-phone-icon">📞</div>
+      <div class="cta-phone">050-2030-2851</div>
+    </div>
+    <p class="cta-hours">受付時間　9:00 〜 18:00（年中無休）</p>
+  </section>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="footer-company">運営：株式会社カイゴマン</div>
+    <div class="footer-sns">
+      <span class="footer-sns-label">SNS で施設の様子をご覧ください →</span>
+      <div class="footer-sns-item">▶ YouTube</div>
+      <div class="footer-sns-item">📸 Instagram</div>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
