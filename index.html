@@ -9,6 +9,26 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Zen+Maru+Gothic:wght@500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LodgingBusiness",
+  "name": "スマイルームおゆみ野",
+  "description": "千葉市緑区誉田町の高齢者対応賃貸住宅。月額59,800円〜。",
+  "telephone": "050-2030-2851",
+  "url": "https://smileroom-oyumino.netlify.app/",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "誉田町1-659-1",
+    "addressLocality": "千葉市緑区",
+    "addressRegion": "千葉県",
+    "postalCode": "266-0005",
+    "addressCountry": "JP"
+  },
+  "priceRange": "¥59,800〜/月",
+  "openingHours": "Mo-Su 09:00-18:00"
+}
+</script>
 <style>
 /* =================== Hero =================== */
 .hero {
@@ -646,7 +666,7 @@
 
 </style>
 </head>
-<body>
+<body data-vacancy="true">
 
 <div data-site-header></div>
 
@@ -664,6 +684,10 @@
   <div class="container">
     <div class="hero-grid">
       <div class="reveal">
+        <div class="vacancy-badge">
+          <span class="vacancy-dot"></span>
+          空室あり・見学受付中
+        </div>
         <span class="eyebrow">スマイルームおゆみ野 <span class="jp">／ 千葉市緑区誉田町</span></span>
         <h1>自分らしく暮らす、<span class="accent">あたらしい住まい</span>のかたち。</h1>
         <p class="hero-lede">
@@ -721,6 +745,18 @@
     </div>
   </div>
 </section>
+
+<nav class="anchor-menu" aria-label="ページ内ナビゲーション">
+  <div class="inner container">
+    <a href="#features">特徴</a>
+    <a href="#pricing">料金</a>
+    <a href="#facilities">設備</a>
+    <a href="#access">アクセス</a>
+    <a href="#testimonials">入居者の声</a>
+    <a href="#faq">よくある質問</a>
+    <a href="#contact">お問い合わせ</a>
+  </div>
+</nav>
 
 <!-- ========== TRUST BAR ========== -->
 <section class="trust-bar" aria-label="施設の特徴ハイライト">
@@ -794,7 +830,7 @@
 </section>
 
 <!-- ========== 特徴 ========== -->
-<section class="section" data-screen-label="03 特徴">
+<section class="section" id="features" data-screen-label="03 特徴">
   <div class="container">
     <div class="reveal" style="max-width:720px;">
       <span class="eyebrow">FEATURES <span class="jp">／ スマイルームの特徴</span></span>
@@ -920,7 +956,7 @@
 </section>
 
 <!-- ========== 設備 ========== -->
-<section class="section facilities-section" data-screen-label="05 設備">
+<section class="section facilities-section" id="facilities" data-screen-label="05 設備">
   <div class="container">
     <div class="reveal" style="max-width:720px;">
       <span class="eyebrow">FACILITIES <span class="jp">／ 充実した設備</span></span>
@@ -984,7 +1020,7 @@
 </section>
 
 <!-- ========== アクセス ========== -->
-<section class="section" data-screen-label="06 アクセス">
+<section class="section" id="access" data-screen-label="06 アクセス">
   <div class="container">
     <div class="reveal" style="max-width:720px;">
       <span class="eyebrow">ACCESS <span class="jp">／ 周辺環境・アクセス</span></span>
@@ -1084,12 +1120,12 @@
     </div>
 
     <div class="day-timeline">
-      <div class="tl-item reveal"><div class="tl-time">7:00</div><div class="tl-label">起床・朝食</div><div class="tl-desc">食堂であたたかい朝ごはん</div></div>
-      <div class="tl-item reveal"><div class="tl-time">10:00</div><div class="tl-label">体操・散歩</div><div class="tl-desc">自由参加のラジオ体操</div></div>
-      <div class="tl-item reveal"><div class="tl-time">12:00</div><div class="tl-label">昼食</div><div class="tl-desc">栄養士監修のお昼ごはん</div></div>
-      <div class="tl-item reveal"><div class="tl-time">14:00</div><div class="tl-label">趣味の時間</div><div class="tl-desc">読書、テレビ、おしゃべり</div></div>
-      <div class="tl-item reveal"><div class="tl-time">17:00</div><div class="tl-label">入浴・夕食</div><div class="tl-desc">ゆっくり湯船に浸かって</div></div>
-      <div class="tl-item reveal"><div class="tl-time">21:00</div><div class="tl-label">就寝</div><div class="tl-desc">夜間も見守りスタッフが常駐</div></div>
+      <div class="tl-item reveal" data-delay="0"><div class="tl-time">7:00</div><div class="tl-label">起床・朝食</div><div class="tl-desc">食堂であたたかい朝ごはん</div></div>
+      <div class="tl-item reveal" data-delay="1"><div class="tl-time">10:00</div><div class="tl-label">体操・散歩</div><div class="tl-desc">自由参加のラジオ体操</div></div>
+      <div class="tl-item reveal" data-delay="2"><div class="tl-time">12:00</div><div class="tl-label">昼食</div><div class="tl-desc">栄養士監修のお昼ごはん</div></div>
+      <div class="tl-item reveal" data-delay="3"><div class="tl-time">14:00</div><div class="tl-label">趣味の時間</div><div class="tl-desc">読書、テレビ、おしゃべり</div></div>
+      <div class="tl-item reveal" data-delay="4"><div class="tl-time">17:00</div><div class="tl-label">入浴・夕食</div><div class="tl-desc">ゆっくり湯船に浸かって</div></div>
+      <div class="tl-item reveal" data-delay="5"><div class="tl-time">21:00</div><div class="tl-label">就寝</div><div class="tl-desc">夜間も見守りスタッフが常駐</div></div>
     </div>
 
     <div class="text-center mt-8 reveal">
@@ -1098,8 +1134,50 @@
   </div>
 </section>
 
+<!-- ========== 入居者・ご家族の声 ========== -->
+<section class="section" id="testimonials" style="background:var(--bg-warm);" data-screen-label="Testimonials">
+  <div class="container">
+    <div class="reveal" style="max-width:720px;">
+      <span class="eyebrow">VOICE <span class="jp">／ 入居者・ご家族の声</span></span>
+      <h2 class="section-title">ここでの暮らしを、<br>ご本人とご家族の声で。</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-header">
+          <div class="testimonial-avatar" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          </div>
+          <div class="testimonial-meta">
+            <div class="name">○○様（80代・女性）</div>
+            <div class="role">入居者本人</div>
+          </div>
+        </div>
+        <p class="testimonial-body">
+          ここに来てから、毎日が楽しくなりました。食堂でみんなとご飯を食べるのが一番の楽しみです。自分のペースで過ごせるのが、以前の施設と全然違うなと感じています。
+        </p>
+        <div class="testimonial-placeholder-note">※ 実際の体験談に差し替え予定</div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="testimonial-header">
+          <div class="testimonial-avatar" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          </div>
+          <div class="testimonial-meta">
+            <div class="name">○○様のご長男（50代）</div>
+            <div class="role">ご家族</div>
+          </div>
+        </div>
+        <p class="testimonial-body">
+          最初は施設に入れることに抵抗がありましたが、スマイルームは「賃貸住宅」という考え方で、母も「引越し先」として自然に受け入れてくれました。24時間見守っていただけるので、離れて暮らす私も安心しています。
+        </p>
+        <div class="testimonial-placeholder-note">※ 実際の体験談に差し替え予定</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ========== FAQ プレビュー ========== -->
-<section class="section" data-screen-label="08 FAQ">
+<section class="section" id="faq" data-screen-label="08 FAQ">
   <div class="container">
     <div class="reveal" style="max-width:720px;">
       <span class="eyebrow">FAQ <span class="jp">／ よくある質問</span></span>
@@ -1210,7 +1288,7 @@
 </section>
 
 <!-- ========== CTA ========== -->
-<section class="section" data-screen-label="10 CTA">
+<section class="section" id="contact" data-screen-label="10 CTA">
   <div class="container">
     <div class="cta-block reveal">
       <div>
