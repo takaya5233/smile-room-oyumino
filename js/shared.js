@@ -168,9 +168,8 @@
     try { items = JSON.parse(raw); } catch (e) { return; }
 
     const crumbs = [{ label: "ホーム", href: "index.html" }];
-    items.forEach((item, i) => {
-      const isLast = i === items.length - 1;
-      crumbs.push({ label: item, href: isLast ? null : null });
+    items.forEach(item => {
+      crumbs.push({ label: item, href: null });
     });
 
     const nav = document.createElement("nav");
