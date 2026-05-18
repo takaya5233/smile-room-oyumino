@@ -26,12 +26,13 @@
     const headerEl = document.querySelector("[data-site-header]");
     if (!headerEl) return;
     headerEl.innerHTML = `
-      <header class="site-header">
-        <div class="container">
-          <a href="index.html" class="brand" aria-label="スマイルームおゆみ野 トップへ">
-            <img src="images/logo.png" alt="スマイルームおゆみ野" class="brand-logo">
-          </a>
-          <nav class="site-nav" aria-label="メインナビゲーション">${navHtml}</nav>
+    <header class="site-header">
+      <div class="container">
+        <a href="index.html" class="brand" aria-label="スマイルームおゆみ野 トップへ">
+          <img src="images/logo.png" alt="スマイルームおゆみ野" class="brand-logo">
+        </a>
+        <nav class="site-nav" aria-label="メインナビゲーション">${navHtml}</nav>
+        <div class="header-right">
           <a href="tel:05020302851" class="header-tel" aria-label="電話で問い合わせ">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             <span>
@@ -39,12 +40,19 @@
               <span class="header-tel-num">050-2030-2851</span>
             </span>
           </a>
+          <a href="contact.html" class="btn btn-primary header-reserve">見学予約</a>
+          <div class="font-size-switcher" aria-label="文字サイズ">
+            <button class="fsz-small"  data-fsz="small"  aria-pressed="false">小</button>
+            <button class="fsz-normal" data-fsz="normal" aria-pressed="true" >標準</button>
+            <button class="fsz-large"  data-fsz="large"  aria-pressed="false">大</button>
+          </div>
           <button class="nav-toggle" aria-label="メニューを開く" onclick="document.body.classList.toggle('nav-open')">
             <span></span><span></span><span></span>
           </button>
         </div>
-      </header>
-    `;
+      </div>
+    </header>
+  `;
   }
 
   function renderFooter() {
@@ -107,12 +115,114 @@
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
-          e.target.classList.add("in");
+          const delay = e.target.dataset.delay ? parseInt(e.target.dataset.delay) * 120 : 0;
+          setTimeout(() => e.target.classList.add("in"), delay);
           io.unobserve(e.target);
         }
       });
     }, { threshold: 0.12 });
     document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  }
+
+  /* ===== font-size switcher ===== */
+  function setupFontSize() {
+    const stored = localStorage.getItem("smileroom-fontsize") || "normal";
+    document.documentElement.setAttribute("data-fontsize", stored);
+
+    document.querySelectorAll(".font-size-switcher button").forEach(btn => {
+      btn.setAttribute("aria-pressed", btn.dataset.fsz === stored ? "true" : "false");
+      btn.addEventListener("click", () => {
+        const size = btn.dataset.fsz;
+        document.documentElement.setAttribute("data-fontsize", size);
+        localStorage.setItem("smileroom-fontsize", size);
+        document.querySelectorAll(".font-size-switcher button").forEach(b => {
+          b.setAttribute("aria-pressed", b.dataset.fsz === size ? "true" : "false");
+        });
+      });
+    });
+  }
+
+  /* ===== floating bar ===== */
+  function setupFloatingBar() {
+    const bar = document.createElement("div");
+    bar.className = "floating-bar";
+    bar.innerHTML = `
+    <a href="tel:05020302851" class="fb-tel" aria-label="電話で問い合わせ">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      電話で問い合わせ
+    </a>
+    <a href="contact.html" class="fb-cta" aria-label="見学を予約する">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      見学を予約する
+    </a>
+  `;
+    document.body.appendChild(bar);
+  }
+
+  /* ===== breadcrumb ===== */
+  function setupBreadcrumb() {
+    const raw = document.body.dataset.breadcrumb;
+    if (!raw) return;
+
+    let items;
+    try { items = JSON.parse(raw); } catch (e) { return; }
+
+    const crumbs = [{ label: "ホーム", href: "index.html" }];
+    items.forEach((item, i) => {
+      const isLast = i === items.length - 1;
+      crumbs.push({ label: item, href: isLast ? null : null });
+    });
+
+    const nav = document.createElement("nav");
+    nav.setAttribute("aria-label", "パンくずリスト");
+    nav.className = "breadcrumb container";
+    nav.innerHTML = crumbs.map((c, i) => {
+      const isLast = i === crumbs.length - 1;
+      const sep = i > 0 ? `<span class="sep" aria-hidden="true">›</span>` : "";
+      const label = isLast
+        ? `<span aria-current="page">${c.label}</span>`
+        : `<a href="${c.href}">${c.label}</a>`;
+      return sep + label;
+    }).join("");
+
+    const header = document.querySelector(".site-header");
+    if (header && header.nextSibling) {
+      header.parentNode.insertBefore(nav, header.nextSibling);
+    }
+
+    const ldItems = crumbs.map((c, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": c.label,
+      ...(c.href ? { "item": location.origin + "/" + c.href } : {})
+    }));
+    const ld = document.createElement("script");
+    ld.type = "application/ld+json";
+    ld.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": ldItems
+    });
+    document.head.appendChild(ld);
+  }
+
+  /* ===== anchor menu ===== */
+  function setupAnchorMenu() {
+    const anchors = document.querySelectorAll(".anchor-menu a");
+    if (!anchors.length) return;
+    const sections = Array.from(anchors)
+      .map(a => document.querySelector(a.getAttribute("href")))
+      .filter(Boolean);
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          anchors.forEach(a => a.classList.remove("active"));
+          const active = document.querySelector(`.anchor-menu a[href="#${e.target.id}"]`);
+          if (active) active.classList.add("active");
+        }
+      });
+    }, { rootMargin: "-40% 0px -55% 0px" });
+    sections.forEach(s => io.observe(s));
   }
 
   /* ===== Tweaks: テーマ切り替え ===== */
@@ -223,6 +333,10 @@
     renderFooter();
     setupReveal();
     setupTweaks();
+    setupFontSize();
+    setupFloatingBar();
+    setupBreadcrumb();
+    setupAnchorMenu();
   }
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
