@@ -132,17 +132,16 @@
     /* 下部オーバーレイ：画像の下端に固定・テキストを下寄せ */
     .hero-overlay {
       position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 34mm;                  /* 下から34mmだけ覆う */
-      padding: 0 10mm 4mm;
+      top: 0; bottom: 0; left: 0; right: 0;
+      padding: 0 10mm 5mm;
       background: linear-gradient(
         to bottom,
-        transparent 0%,
-        rgba(20,8,4,0.62) 35%,
-        rgba(20,8,4,0.88) 100%
+        transparent 30%,
+        rgba(20,8,4,0.50) 70%,
+        rgba(20,8,4,0.78) 100%
       );
       display: flex;
-      align-items: flex-end;         /* テキストを下端に寄せる */
+      align-items: flex-end;
       justify-content: space-between;
       gap: 6mm;
     }
@@ -162,9 +161,9 @@
     .hero-sub-block {
       display: flex;
       flex-direction: column;
-      gap: 1.5mm;
-      max-width: 95mm;
+      max-width: 85mm;
       padding-bottom: 1mm;
+      text-align: right;
     }
     .hero-sub-title {
       font-size: 4.5mm;
@@ -470,15 +469,14 @@
     <img src="images/exterior.jpg" alt="スマイルームおゆみ野 外観">
     <div class="hero-badge">🌸 千葉市緑区おゆみ野エリア</div>
     <div class="hero-overlay">
-      <!-- 左：メインキャッチ -->
+      <!-- 左下：メインキャッチ -->
       <h1 class="hero-headline">
         ずっと自分らしく、<br>
         <em>笑顔</em>で暮らせる家。
       </h1>
-      <!-- 右：サブキャッチ＋説明 -->
+      <!-- 右下：サブキャッチ -->
       <div class="hero-sub-block">
-        <div class="hero-sub-title">高齢者の毎日に、本当に必要なものを。</div>
-        <p class="hero-sub-body">高齢者向けの設備と見守りを備えた賃貸住宅。介護施設ではなく「自分らしく暮らせる住まい」として、ご本人にもご家族にも安心していただける環境を整えました。「安心」と「自由」を両立するため、設備・サポート・立地のすべてにこだわりました。</p>
+        <p class="hero-sub-body">高齢者向けの設備と見守りを<br>備えた賃貸住宅。<br>介護施設ではなく<br>「自分らしく暮らせる住まい」</p>
       </div>
     </div>
   </div>
