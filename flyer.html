@@ -188,24 +188,27 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 5mm;
+      gap: 4mm;
     }
     .pension-ribbon-main {
-      font-size: 7mm;
+      font-size: 5.5mm;
       font-weight: 900;
       color: var(--white);
       letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+    .pension-ribbon-price {
+      font-size: 8mm;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: 0.06em;
       text-shadow: 0 1px 6px rgba(0,0,0,0.20);
       white-space: nowrap;
     }
-    .pension-ribbon-sub {
-      font-size: 3.8mm;
+    .pension-ribbon-note {
+      font-size: 3.5mm;
       font-weight: 700;
       color: rgba(255,255,255,0.90);
-      background: rgba(255,255,255,0.18);
-      border: 1px solid rgba(255,255,255,0.40);
-      border-radius: 20px;
-      padding: 1mm 4mm;
       white-space: nowrap;
     }
 
@@ -483,8 +486,9 @@
 
   <!-- 年金リボン -->
   <div class="pension-ribbon">
-    <div class="pension-ribbon-main">🌸 年金で暮らせる</div>
-    <div class="pension-ribbon-sub">月額 59,800円〜 家賃・管理費・共益費すべて込み</div>
+    <span class="pension-ribbon-main">🌸 年金で暮らせる</span>
+    <span class="pension-ribbon-price">59,800円〜</span>
+    <span class="pension-ribbon-note">家賃・管理費・共益費すべて込み</span>
   </div>
 
   <!-- 6つの安心 -->
