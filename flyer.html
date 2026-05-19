@@ -440,6 +440,60 @@
     }
 
     /* ══════════════════════════════════════
+       介護施設との違い
+    ══════════════════════════════════════ */
+    .compare {
+      padding: 3mm 8mm 2.5mm;
+      background: var(--pink-pale);
+    }
+    .compare-title {
+      text-align: center;
+      font-size: 4.3mm;
+      font-weight: 900;
+      color: var(--brown-dark);
+      letter-spacing: 0.08em;
+      margin-bottom: 2mm;
+    }
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 3.2mm;
+    }
+    .compare-table th {
+      padding: 1.5mm 3mm;
+      font-size: 3.2mm;
+      font-weight: 700;
+      text-align: center;
+    }
+    .compare-table th.col-label { background: transparent; }
+    .compare-table th.col-our {
+      background: var(--pink-dark);
+      color: var(--white);
+      border-radius: 3px 3px 0 0;
+    }
+    .compare-table th.col-other {
+      background: #888;
+      color: var(--white);
+      border-radius: 3px 3px 0 0;
+    }
+    .compare-table td {
+      padding: 1.8mm 3mm;
+      border-bottom: 1px solid var(--pink-light);
+      color: var(--brown-dark);
+    }
+    .compare-table td.val-our {
+      text-align: center;
+      color: var(--pink-dark);
+      font-weight: 700;
+      background: var(--white);
+    }
+    .compare-table td.val-other {
+      text-align: center;
+      color: #888;
+      background: var(--white);
+    }
+
+    /* ══════════════════════════════════════
        印刷設定
     ══════════════════════════════════════ */
     @media print {
@@ -526,6 +580,42 @@
         <div class="feature-desc">栄養士監修の食事を食堂でご提供（オプション）。</div>
       </div>
     </div>
+  </section>
+
+  <!-- 介護施設との違い -->
+  <section class="compare">
+    <p class="compare-title">⚖️ 介護施設との違い</p>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th class="col-label" style="width:35%"></th>
+          <th class="col-our">スマイルームおゆみ野</th>
+          <th class="col-other">介護施設</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>介護の選択</td>
+          <td class="val-our">✅ 自由に選べる</td>
+          <td class="val-other">❌ 施設指定</td>
+        </tr>
+        <tr>
+          <td>プライバシー</td>
+          <td class="val-our">✅ 完全個室</td>
+          <td class="val-other">△ 相部屋あり</td>
+        </tr>
+        <tr>
+          <td>月額費用</td>
+          <td class="val-our">✅ 定額・明確</td>
+          <td class="val-other">△ 変動あり</td>
+        </tr>
+        <tr>
+          <td>面会・外出</td>
+          <td class="val-our">✅ 自由</td>
+          <td class="val-other">△ 制限あり</td>
+        </tr>
+      </tbody>
+    </table>
   </section>
 
   <!-- 2カラム：料金 ＋ 周辺アクセス（ラベルなし・高さ揃え） -->
